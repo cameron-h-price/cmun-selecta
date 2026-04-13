@@ -6,6 +6,7 @@
   <title>CmunSelecta — Drum &amp; Bass | Leiden</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -183,6 +184,42 @@
       margin-bottom: 1.5rem;
     }
 
+    .hero-social {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-social a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      opacity: 0.85;
+    }
+
+    .hero-social a:hover { transform: translateY(-3px); opacity: 1; text-decoration: none; }
+
+    .hero-social i {
+      font-size: 1.75rem;
+    }
+
+    .hero-social .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .icon-mixcloud  { color: #52b8c4; }
+    .icon-instagram { color: #e1306c; }
+    .icon-soundcloud { color: #ff5500; }
+
     /* ── ABOUT ── */
     #about .about-grid {
       display: grid;
@@ -329,6 +366,20 @@
     <div class="hero-cta">
       <a href="#mixes" class="btn btn-primary">Listen</a>
       <a href="#booking" class="btn btn-ghost">Book</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://www.mixcloud.com/CmunSelecta/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-mixcloud icon-mixcloud"></i>
+        <span class="label">Mixcloud</span>
+      </a>
+      <a href="https://www.instagram.com/cmun.selecta/" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram icon-instagram"></i>
+        <span class="label">Instagram</span>
+      </a>
+      <a href="https://soundcloud.com/cmun-selecta" target="_blank" rel="noopener">
+        <i class="fa-brands fa-soundcloud icon-soundcloud"></i>
+        <span class="label">SoundCloud</span>
+      </a>
     </div>
   </section>
 
