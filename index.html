@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CmunSelecta — Drum &amp; Bass | Leiden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a1628;
+      --navy2:  #0f2040;
+      --teal:   #00e5ff;
+      --purple: #a855f7;
+      --white:  #ffffff;
+      --muted:  #8baabf;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal); text-decoration: none; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,229,255,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 50% at 80% 20%, rgba(168,85,247,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-mascot {
+      width: min(300px, 55vw);
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 40px rgba(0,229,255,0.25));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--white) 30%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      box-shadow: 0 0 24px rgba(0,229,255,0.35);
+    }
+
+    .btn-primary:hover { box-shadow: 0 0 36px rgba(0,229,255,0.55); }
+
+    .btn-ghost {
+      border: 1px solid rgba(0,229,255,0.35);
+      color: var(--teal);
+    }
+
+    .btn-ghost:hover { border-color: var(--teal); background: rgba(0,229,255,0.05); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    #about p {
+      color: #c8d8e8;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    #about p:last-child { margin-bottom: 0; }
+
+    .about-photo {
+      width: 100%;
+      max-width: 380px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,229,255,0.12);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      justify-self: center;
+    }
+
+    /* ── MIXES ── */
+    #mixes { background: none; }
+
+    .sc-embed {
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0,229,255,0.1);
+    }
+
+    .mix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .mix-link {
+      display: block;
+      padding: 0.85rem 1.1rem;
+      background: var(--navy2);
+      border: 1px solid rgba(0,229,255,0.1);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .mix-link:hover {
+      border-color: var(--teal);
+      background: rgba(0,229,255,0.05);
+      text-decoration: none;
+      color: var(--teal);
+    }
+
+    .mix-link .mix-icon { margin-right: 0.5rem; opacity: 0.6; }
+
+    /* ── BOOKING ── */
+    #booking {
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    #booking .booking-card {
+      background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(168,85,247,0.06));
+      border: 1px solid rgba(0,229,255,0.15);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #booking p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a { color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--teal); text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+
+      #about .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">CmunSelecta</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mixes">Mixes</a></li>
+      <li><a href="#booking">Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <img src="assets/mascot.png" alt="CmunSelecta mascot" class="hero-mascot" />
+    <h1 class="hero-name">CmunSelecta</h1>
+    <p class="hero-sub">Drum &amp; Bass &nbsp;·&nbsp; Leiden</p>
+    <div class="hero-cta">
+      <a href="#mixes" class="btn btn-primary">Listen</a>
+      <a href="#booking" class="btn btn-ghost">Book</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div>
+        <h2>The Selecta</h2>
+        <p>
+          CmunSelecta is a drum &amp; bass DJ from Leiden with a simple mission:
+          find the tracks that hit different and play them loud.
+        </p>
+        <p>
+          From deep liquid and atmospheric rollers to high-energy dancefloor
+          destroyers — the selecta covers the spectrum. Expect sets that move
+          between moods, built around feel rather than formula.
+        </p>
+        <p style="margin-top:1.5rem;">
+          <a href="#booking" class="btn btn-ghost" style="font-size:0.85rem;">Get in touch →</a>
+        </p>
+      </div>
+      <img src="assets/photo.jpg" alt="CmunSelecta" class="about-photo" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MIXES -->
+  <section id="mixes">
+    <p class="section-label">Mixes</p>
+    <h2>Listen</h2>
+
+    <!-- SoundCloud featured embed -->
+    <div class="sc-embed">
+      <iframe
+        width="100%"
+        height="166"
+        scrolling="no"
+        frameborder="0"
+        allow="autoplay"
+        src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FCmunSelecta%2Fdnb-liquid-dark-soulful-deep%2F">
+      </iframe>
+    </div>
+
+    <!-- Mixcloud archive -->
+    <p class="section-label" style="margin-top:2rem; margin-bottom:1rem;">Full archive on Mixcloud</p>
+    <div class="mix-grid">
+      <a href="https://www.mixcloud.com/CmunSelecta/dnb-liquid-dark-soulful-deep/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>DNB – Liquid · Dark · Soulful · Deep
+      </a>
+      <a href="https://soundcloud.com/cmun-selecta" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>Liquid Dark And Deep
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/uplifting-drum-and-bass/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>Uplifting Drum and Bass
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/high-energy-dancefloor-mix/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>High Energy Dancefloor
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/stutter-house/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>Stutter House
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/lotte-slappers/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>Lotte Slappers
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/420-mix/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>420 Mix
+      </a>
+      <a href="https://www.mixcloud.com/CmunSelecta/jungle-origins/" class="mix-link" target="_blank" rel="noopener">
+        <span class="mix-icon">▶</span>Jungle Origins
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="booking-card">
+      <p class="section-label" style="margin-bottom:0.75rem;">Bookings</p>
+      <h2 style="margin-bottom:0.75rem;">Let's make it happen</h2>
+      <p>Available for clubs, events, and festivals.<br>Get in touch to talk dates.</p>
+      <a href="mailto:cmun.selecta@gmail.com" class="btn btn-primary">
+        cmun.selecta@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <ul class="footer-links">
+      <li><a href="https://soundcloud.com/cmun-selecta" target="_blank" rel="noopener">SoundCloud</a></li>
+      <li><a href="https://www.mixcloud.com/CmunSelecta/" target="_blank" rel="noopener">Mixcloud</a></li>
+      <li><a href="#booking">Instagram</a></li>
+    </ul>
+    <p>© 2026 CmunSelecta</p>
+  </footer>
+
+</body>
+</html>
