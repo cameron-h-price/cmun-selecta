@@ -285,6 +285,85 @@
 
     .mix-link .mix-icon { margin-right: 0.5rem; opacity: 0.6; }
 
+    /* ── SELECTIONS ── */
+    #selections { background: none; }
+
+    #selections p.intro {
+      color: #c8d8e8;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 640px;
+    }
+
+    .selections-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .spotify-embed {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,229,255,0.1);
+    }
+
+    .featured-playlists {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .featured-playlist {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-playlist .selections-note {
+      flex: 1;
+    }
+
+    .selections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .selections-item {
+      background: var(--navy2);
+      border: 1px solid rgba(0,229,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .selections-item:hover { border-color: rgba(0,229,255,0.3); }
+
+    .selections-item .week-label {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .selections-item .btn { font-size: 0.8rem; padding: 0.6rem 1.25rem; }
+
+    .selections-item .mixcloud-pending {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .selections-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
     /* ── BOOKING ── */
     #booking {
       text-align: center;
@@ -345,6 +424,10 @@
       }
 
       .about-photo { order: -1; }
+
+      .featured-playlists {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -355,6 +438,7 @@
     <span class="nav-logo">CmunSelecta</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#selections">Selections</a></li>
       <li><a href="#mixes">Mixes</a></li>
       <li><a href="#booking">Booking</a></li>
     </ul>
@@ -420,6 +504,107 @@
 
   <div class="divider"></div>
 
+  <!-- SELECTIONS -->
+  <section id="selections">
+    <p class="section-label">Weekly Show</p>
+    <h2>CmunSelections</h2>
+    <p class="intro">
+      A weekly radio show pulling together the best tunes from the last seven days —
+      recorded every week, sometimes streamed live, and always uploaded to Mixcloud.
+      Each episode comes with a companion playlist on Spotify so you can save what you hear.
+    </p>
+
+    <!-- Permanent playlists (always kept current) -->
+    <div class="featured-playlists">
+      <div class="featured-playlist">
+        <p class="section-label" style="margin-bottom:0.75rem;">Latest Playlist</p>
+        <p class="selections-note" style="margin-bottom:1rem;">
+          One permanent playlist, always up to date — it's updated every week to match
+          whatever's playing on the newest episode, so you can just follow it once and
+          always have the latest selections.
+        </p>
+        <div class="spotify-embed">
+          <iframe
+            src="https://open.spotify.com/embed/playlist/0ZmIyD5tZHnLQb6risOFn5?utm_source=generator"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+      <div class="featured-playlist">
+        <p class="section-label" style="margin-bottom:0.75rem;">Top Picks</p>
+        <p class="selections-note" style="margin-bottom:1rem;">
+          The cream of the crop — a permanent playlist of standout tracks pulled from
+          every week's episode, also kept up to date as new weeks land.
+        </p>
+        <div class="spotify-embed">
+          <iframe
+            src="https://open.spotify.com/embed/playlist/0jgsMkY9GkTNdPLee6EzXy?utm_source=generator"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-top:2rem; margin-bottom:1rem;">Past Weeks</p>
+    <div class="selections-grid">
+      <div class="selections-item">
+        <span class="week-label">Week 36</span>
+        <span class="mixcloud-pending">Mixcloud coming soon</span>
+        <div class="selections-links">
+          <a href="https://open.spotify.com/playlist/3sJnqYuNBWsMfDYqS1U2Cg?si=e9acea6142024338" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify" style="margin-right:0.5rem;"></i>Full Playlist
+          </a>
+          <a href="https://open.spotify.com/playlist/4wNwvRofqWKrDNqp3qxwXp?si=dddd8861f0bc4949" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-solid fa-star" style="margin-right:0.5rem;"></i>Top Picks
+          </a>
+        </div>
+      </div>
+      <div class="selections-item">
+        <span class="week-label">Week 35</span>
+        <div class="selections-links">
+          <a href="https://www.mixcloud.com/CmunSelecta/cmunselections-week-35/" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-mixcloud" style="margin-right:0.5rem;"></i>Mixcloud
+          </a>
+          <a href="https://open.spotify.com/playlist/032yLpWke11UMxo3k9YUYM?si=78885f5e02684ede" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify" style="margin-right:0.5rem;"></i>Full Playlist
+          </a>
+          <a href="https://open.spotify.com/playlist/2DvHXd7Yze7BKLJ3ljABtd?si=ff4284c11e9f4e9d" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-solid fa-star" style="margin-right:0.5rem;"></i>Top Picks
+          </a>
+        </div>
+      </div>
+      <div class="selections-item">
+        <span class="week-label">Week 34</span>
+        <span class="mixcloud-pending">Mixcloud coming soon</span>
+        <div class="selections-links">
+          <a href="https://open.spotify.com/playlist/3fXot9hRCkunpMm87EOieu?si=ec7eb1f6b78048a7" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify" style="margin-right:0.5rem;"></i>Full Playlist
+          </a>
+          <a href="https://open.spotify.com/playlist/0pmMCXJ4C8cP5jLlOXAT75?si=c9337b7d2f1c4d82" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-solid fa-star" style="margin-right:0.5rem;"></i>Top Picks
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="selections-note">
+      Full episodes upload weekly to
+      <a href="https://www.mixcloud.com/CmunSelecta/" target="_blank" rel="noopener">Mixcloud</a>
+      — sometimes streamed live on
+      <a href="https://www.twitch.tv/cmunselecta" target="_blank" rel="noopener">Twitch</a>.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- MIXES -->
   <section id="mixes">
     <p class="section-label">Mixes</p>
@@ -443,7 +628,7 @@
       <a href="https://www.mixcloud.com/CmunSelecta/dnb-liquid-dark-soulful-deep/" class="mix-link" target="_blank" rel="noopener">
         <span class="mix-icon">▶</span>DNB – Liquid · Dark · Soulful · Deep
       </a>
-<a href="https://www.mixcloud.com/CmunSelecta/uplifting-drum-and-bass/" class="mix-link" target="_blank" rel="noopener">
+      <a href="https://www.mixcloud.com/CmunSelecta/uplifting-drum-and-bass/" class="mix-link" target="_blank" rel="noopener">
         <span class="mix-icon">▶</span>Uplifting Drum and Bass
       </a>
       <a href="https://www.mixcloud.com/CmunSelecta/high-energy-dancefloor-mix/" class="mix-link" target="_blank" rel="noopener">
