@@ -325,10 +325,12 @@
     }
 
     .selections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      display: flex;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.5rem;
     }
 
     .selections-item {
@@ -338,6 +340,7 @@
       padding: 1.5rem;
       text-align: center;
       transition: border-color 0.2s;
+      flex: 0 0 220px;
     }
 
     .selections-item:hover { border-color: rgba(0,229,255,0.3); }
@@ -350,14 +353,6 @@
     }
 
     .selections-item .btn { font-size: 0.8rem; padding: 0.6rem 1.25rem; }
-
-    .selections-item .mixcloud-pending {
-      display: block;
-      margin-bottom: 0.9rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-style: italic;
-    }
 
     .selections-note {
       color: var(--muted);
@@ -556,6 +551,17 @@
     <p class="section-label" style="margin-top:2rem; margin-bottom:1rem;">Past Weeks</p>
     <div class="selections-grid">
       <div class="selections-item">
+        <span class="week-label">Week 38</span>
+        <div class="selections-links">
+          <a href="https://www.youtube.com/watch?v=xsNz2T57blI" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-youtube" style="margin-right:0.5rem;"></i>YouTube
+          </a>
+          <a href="https://open.spotify.com/playlist/0qkYDmWFCP432kV0mRQOdy?si=1345aedf22a44888" class="btn btn-ghost" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify" style="margin-right:0.5rem;"></i>Full Playlist
+          </a>
+        </div>
+      </div>
+      <div class="selections-item">
         <span class="week-label">Week 37</span>
         <div class="selections-links">
           <a href="https://open.spotify.com/playlist/6du08dRttco1g6wewp3Udn?si=4R4Mtyh8RTS5H3aYH1MSWg&utm_source=copy-link&pi=6t9-jGI6RLmha" class="btn btn-ghost" target="_blank" rel="noopener">
@@ -565,7 +571,6 @@
       </div>
       <div class="selections-item">
         <span class="week-label">Week 36</span>
-        <span class="mixcloud-pending">Mixcloud coming soon</span>
         <div class="selections-links">
           <a href="https://youtu.be/AMsR_VpGKo8" class="btn btn-ghost" target="_blank" rel="noopener">
             <i class="fa-brands fa-youtube" style="margin-right:0.5rem;"></i>YouTube
@@ -597,7 +602,6 @@
       </div>
       <div class="selections-item">
         <span class="week-label">Week 34</span>
-        <span class="mixcloud-pending">Mixcloud coming soon</span>
         <div class="selections-links">
           <a href="https://open.spotify.com/playlist/3fXot9hRCkunpMm87EOieu?si=ec7eb1f6b78048a7" class="btn btn-ghost" target="_blank" rel="noopener">
             <i class="fa-brands fa-spotify" style="margin-right:0.5rem;"></i>Full Playlist
@@ -609,12 +613,6 @@
       </div>
     </div>
 
-    <p class="selections-note">
-      Full episodes upload weekly to
-      <a href="https://www.mixcloud.com/CmunSelecta/" target="_blank" rel="noopener">Mixcloud</a>
-      — sometimes streamed live on
-      <a href="https://www.twitch.tv/cmunselecta" target="_blank" rel="noopener">Twitch</a>.
-    </p>
   </section>
 
   <div class="divider"></div>
@@ -688,6 +686,18 @@
     </ul>
     <p>© 2026 CmunSelecta</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var grid = document.querySelector('.selections-grid');
+      if (!grid) return;
+      grid.addEventListener('wheel', function (e) {
+        if (e.deltaY === 0) return;
+        e.preventDefault();
+        grid.scrollLeft += e.deltaY;
+      }, { passive: false });
+    });
+  </script>
 
 </body>
 </html>
